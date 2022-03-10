@@ -4,13 +4,22 @@
 
 bool anagram(std::string str1,std::string str2){
     if(str1.length()!=str2.length())return false;
-    std::map<char ,int>line;
+    std::map<char ,int>line1;
+    std::map<char ,int>line2;
     for(int i=0;i<str1.length();i++){
-        line.insert(std::pair<char,int>(str1[i],i));
-        line.insert(std::pair<char,int>(str2[i],i));
+        line1.insert(std::pair<char,int>(str1[i],i));
+        line2.insert(std::pair<char,int>(str2[i],i));
     }
-    if(str1.length()==line.size())return true;
-    else return false;
+    auto it1=line1.begin();
+    auto it2=line2.begin();
+    if(line1.size()==line2.size()){
+        for(int i=0;i<line1.size();i++) {
+            if (it1->first != it2->first)return false;
+            it1++;
+            it2++;
+        }
+    } else return false;
+    return true;
 }
 
 int main() {
